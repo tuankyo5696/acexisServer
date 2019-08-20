@@ -1,7 +1,7 @@
 const { Customer } = require('./../models/customer');
 
 const CustomerService = {
-  createCustomers: ({ field, email, phone, company, firstName, lastName }) => {
+  createCustomers: ({ field, email, phone, company, firstName, lastName,description }) => {
     return CustomerService.findCustomerByEmail(email).then((res) => {
       if (!res) {
         const newCustomer = new Customer({
@@ -11,6 +11,7 @@ const CustomerService = {
           company,
           firstName,
           lastName,
+          description
         });
         return newCustomer.save();
       }
@@ -35,6 +36,7 @@ const CustomerService = {
         company,
         firstName,
         lastName,
+        description
       };
       for (let key in newCustomer) {
         customer[key] = newCustomer[key];
