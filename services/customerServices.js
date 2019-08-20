@@ -1,8 +1,8 @@
-const { Customer } = require("./../models/customer")
+const { Customer } = require('./../models/customer');
 
 const CustomerService = {
   createCustomers: ({ field, email, phone, company, firstName, lastName }) => {
-    return CustomerService.findCustomerByEmail(email).then(res => {
+    return CustomerService.findCustomerByEmail(email).then((res) => {
       if (!res) {
         const newCustomer = new Customer({
           field,
@@ -10,47 +10,39 @@ const CustomerService = {
           phone,
           company,
           firstName,
-          lastName
-        })
-        return newCustomer.save()
+          lastName,
+        });
+        return newCustomer.save();
       }
-      return false
-    })
+      return false;
+    });
   },
   findAllCustomer: () => {
-    return Customer.find({})
+    return Customer.find({});
   },
-  findCustomerByEmail: email => {
-    return Customer.findOne({ email: email.trim.toLowerCase() })
+  findCustomerByEmail: (email) => {
+    return Customer.findOne({ email: email.trim().toLowerCase() });
   },
-  deleteCustomers: idArr => {
-    return Customer.deleteMany({ _id: { $in: [...idArr] } })
+  deleteCustomers: (idArr) => {
+    return Customer.deleteMany({ _id: { $in: [...idArr] } });
   },
-  editCustomers: ({
-    _id,
-    field,
-    email,
-    phone,
-    company,
-    firstName,
-    lastName
-  }) => {
-    return Customer.findById(_id).then(customer => {
+  editCustomers: ({ _id, field, email, phone, company, firstName, lastName }) => {
+    return Customer.findById(_id).then((customer) => {
       const newCustomer = {
         field,
         email,
         phone,
         company,
         firstName,
-        lastName
-      }
+        lastName,
+      };
       for (let key in newCustomer) {
-        customer[key] = newCustomer[key]
+        customer[key] = newCustomer[key];
       }
-      return customer.save()
-    })
-  }
-}
+      return customer.save();
+    });
+  },
+};
 module.exports = {
-  CustomerService
-}
+  CustomerService,
+};
