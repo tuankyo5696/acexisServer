@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const { mongoURI } = require("./config/key")
 const { port } = require("./config/key")
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true })
+  .connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true })
   .then(console.log("connect to Acexis db"))
   .catch(console.log())
 
