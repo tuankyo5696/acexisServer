@@ -27,7 +27,7 @@ const CustomerService = {
   deleteCustomers: (idArr) => {
     return Customer.deleteMany({ _id: { $in: [...idArr] } });
   },
-  editCustomers: ({ _id, field, email, phone, company, firstName, lastName }) => {
+  editCustomers: ({ _id, field, email, phone, company, firstName, lastName,description }) => {
     return Customer.findById(_id).then((customer) => {
       const newCustomer = {
         field,
